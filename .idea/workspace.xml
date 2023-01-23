@@ -8,6 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CommQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommQueries.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DB_Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DB_Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionaries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionaries.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,7 +88,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

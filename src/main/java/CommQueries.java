@@ -23,13 +23,13 @@ public class CommQueries {
             System.out.println(e);
         }
     }
-    public String compareInfo(int invoiceNumber, CommRow commRow) {
+    public String compareInfo(int invoiceNumber, CommRow commRow, String salesPerson) {
         problems = "" + invoiceNumber;
 
         try {
             //Set Up Queries
             String order = "select * from order where ID='"+invoiceNumber+"' ";
-            String trans = "select * from order_transaction where order_ID='"+invoiceNumber+"' order by transaction_date asc;";
+            String trans = "select * from order_transaction where order_ID='"+invoiceNumber+"' order by transaction_date desc;";
 
             //Run Queries
             ResultSet orderResults = runQueries(order);
@@ -39,6 +39,7 @@ public class CommQueries {
             //TODO: fix input variable for shipping comparison
             //problems += compareShipping(transResults, 0);
             problems += compareDate(transResults, commRow.getDate());
+            problems += compareSalesPerson(orderResults, salesPerson);
             problems += compareSales(transResults, commRow.getSale());
             problems += compareGP(transResults, commRow.getGp());
             problems += compareSaleType(orderResults, commRow.getSaleType());
@@ -71,6 +72,27 @@ public class CommQueries {
 
         if(compareBigDecVariance(commShip, shipping, .50)) {
             return " | Sales: " + shipping;
+        } else {
+            return "";
+        }
+    }
+
+    private String compareSalesPerson(ResultSet rs, String commSalesPerson) throws SQLException {
+        //System.out.println("---Compare Sales Person---");
+        String salesPerson = null;
+        String temp;
+        Dictionaries dict = new Dictionaries();
+
+        rs.beforeFirst();
+
+        if(rs.next()) {
+            temp = dict.getSalesPerson(rs.getInt(rs.findColumn("sales_person")));
+            //System.out.println("Sales Person: " + temp);
+            salesPerson = temp;
+        }
+
+        if(commSalesPerson.compareTo(salesPerson) != 0) {
+            return " | Sales Person: " + salesPerson;
         } else {
             return "";
         }
@@ -140,6 +162,7 @@ public class CommQueries {
         //System.out.println("---Compare Sale Type---");
         int saleType = 0;
         int temp;
+        Dictionaries dict = new Dictionaries();
 
         rs.beforeFirst();
 
@@ -150,7 +173,7 @@ public class CommQueries {
         }
 
         if(commSaleType != saleType) {
-            return " | Sale Type: " + saleType;
+            return " | Sale Type: " + dict.getSalesType(saleType);
         } else {
             return "";
         }
