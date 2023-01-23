@@ -5,12 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CommQueries {
-
     private String problems;
 
     private Connection con = null;
     private Statement sst = null;
-    private final String dbLoc = "";
+    private final String dbLoc = "V:\\Shared Files\\.Scaffoldmart_Record_Database\\Scaffoldmart Records_be.accdb";
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -24,10 +23,8 @@ public class CommQueries {
             System.out.println(e);
         }
     }
-
-    //TODO: add individual checks into checkCommission via methods (and more queries)
     public String compareInfo(int invoiceNumber, CommRow commRow) {
-        problems = "\n" + invoiceNumber;
+        problems = "" + invoiceNumber;
 
         try {
             //Set Up Queries
@@ -39,32 +36,26 @@ public class CommQueries {
             ResultSet transResults = runQueries(trans);
 
             //Do Comparisons
-            //TODO: fix input variable
+            //TODO: fix input variable for shipping comparison
             //problems += compareShipping(transResults, 0);
             problems += compareDate(transResults, commRow.getDate());
             problems += compareSales(transResults, commRow.getSale());
             problems += compareGP(transResults, commRow.getGp());
             problems += compareSaleType(orderResults, commRow.getSaleType());
             problems += compareSalesPerson(orderResults, commRow.getSalesPerson());
-
-
         } catch (Exception e) {
             System.out.println(e);
         }
 
-        return problems;
+        return problems + "\n";
     }
-
     private ResultSet runQueries(String query) throws Exception {
         sst = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT);
         return sst.executeQuery(query);
     }
-
     private boolean compareBigDecVariance(BigDecimal bd1, BigDecimal bd2, double variance) {
         return Math.abs(Double.parseDouble(bd1.subtract(bd2).toString())) > variance;
     }
-
-    //if commShip != DBShip, return DBShip
     private String compareShipping(ResultSet rs, BigDecimal commShip) throws SQLException {
         //System.out.println("---Compare Shipping---");
         BigDecimal shipping = new BigDecimal(0);
@@ -84,8 +75,6 @@ public class CommQueries {
             return "";
         }
     }
-
-    //TODO: Date comparison is showing always wrong, mismatch probably
     private String compareDate(ResultSet rs, Date commDate) throws SQLException {
         //System.out.println("---Compare Date---");
         Date dbDate = null;
@@ -105,7 +94,6 @@ public class CommQueries {
             return "";
         }
     }
-
     private String compareSales(ResultSet rs, BigDecimal commSales) throws SQLException {
         //System.out.println("---Compare Sales---");
         BigDecimal sales = new BigDecimal(0);
@@ -127,7 +115,6 @@ public class CommQueries {
             return "";
         }
     }
-
     private String compareGP(ResultSet rs, BigDecimal commGP) throws SQLException {
         //System.out.println("---Compare GP---");
         BigDecimal gp = new BigDecimal(0);
@@ -149,7 +136,6 @@ public class CommQueries {
             return "";
         }
     }
-
     private String compareSaleType(ResultSet rs, int commSaleType) throws SQLException {
         //System.out.println("---Compare Sale Type---");
         int saleType = 0;
@@ -169,7 +155,6 @@ public class CommQueries {
             return "";
         }
     }
-
     private String compareSalesPerson(ResultSet rs, int commSalesPerson) throws SQLException {
         //System.out.println("---Compare Sales Person---");
         int salesPerson = 0;

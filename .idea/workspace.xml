@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d856cdd3-d819-4a7c-acdd-5b00abd91444" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommQueries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/CommRow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/DB_Runner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Dictionaries.java" afterDir="false" />
+    <list default="true" id="d856cdd3-d819-4a7c-acdd-5b00abd91444" name="Changes" comment="General Idea">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CommQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommQueries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/DB_Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DB_Runner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +22,12 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -72,6 +72,14 @@
       <option name="presentableId" value="Default" />
       <updated>1673984196819</updated>
     </task>
+    <task id="LOCAL-00001" summary="General Idea">
+      <created>1674252264242</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1674252264242</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -84,6 +92,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="General Idea" />
+    <option name="LAST_COMMIT_MESSAGE" value="General Idea" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

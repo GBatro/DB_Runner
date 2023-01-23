@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.Scanner;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -13,28 +14,57 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class DB_Runner {
 
     private static final CommQueries cq = new CommQueries();;
-    private static final String commLoc = "";
+    private static final String commLoc = "C:\\Users\\blake\\Downloads\\";
+    private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Workbook name1 = null;
-        Workbook name2 = null;
-        Workbook name3 = null;
+        int numWorkbooks = 0;
 
-        try {
-            name1 = setUpWoorkbook("");
-            name2 = setUpWoorkbook("");
-            name3 = setUpWoorkbook("");
+        System.out.println("How many workbooks do you want to check?");
+        numWorkbooks = sc.nextInt();
+        sc.nextLine();
+        String[] filenames = new String[numWorkbooks];
 
-            wb2dbCompare(name1);
+        System.out.println("Enter filenames below:");
+        for(int x = 0; x < numWorkbooks; x++) {
+            filenames[x] = sc.nextLine();
+        }
+
+        sc.close();
+
+        for(int x = 0; x < numWorkbooks; x++) {
+            System.out.println("Showing results for workbooks " + filenames[x]);
+
+            try {
+                Workbook wb = setUpWoorkbook(filenames[x]);
+                wb2dbCompare(wb);
+                wb.close();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+
+            System.out.println();
+        }
+
+        //Workbook name1 = null;
+        //Workbook name2 = null;
+        //Workbook name3 = null;
+
+        //try {
+            //name1 = setUpWoorkbook("Glen");
+            //name2 = setUpWoorkbook("Matt");
+            //name3 = setUpWoorkbook("Ransom");
+
+            //wb2dbCompare(name1);
             //wb2dbCompare(name2);
             //wb2dbCompare(name3);
 
-            name1.close();
-            name2.close();
-            name3.close();
-        } catch(IOException e) {
-            System.out.println(e);
-        }
+            //name1.close();
+            //name2.close();
+            //name3.close();
+        //} catch(IOException e) {
+            //System.out.println(e);
+        //}
     }
 
     private static Workbook setUpWoorkbook(String name) throws IOException {
@@ -50,20 +80,20 @@ public class DB_Runner {
         CommRow commRow;
 
         //Row iterator
-        Iterator<Row> iterator = workbook.getSheetAt(1).iterator();
+        Iterator<Row> rowIterator = workbook.getSheetAt(1).iterator();
 
         //Cell iterator objects
-        Row nextRow = iterator.next();;
+        Row nextRow = rowIterator.next();;
         Iterator<Cell> cellIterator;
         Cell cell;
 
         //Go through all of the rows and collect info
-        while (iterator.hasNext()) {
+        while (rowIterator.hasNext()) {
             //Object to hold all of the row info
             commRow = new CommRow();
 
             //Next row, iterate through row
-            nextRow = iterator.next();
+            nextRow = rowIterator.next();
             cellIterator = nextRow.cellIterator();
 
             //Iterate through the row and collect all the info
