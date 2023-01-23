@@ -39,11 +39,10 @@ public class CommQueries {
             //TODO: fix input variable for shipping comparison
             //problems += compareShipping(transResults, 0);
             problems += compareDate(transResults, commRow.getDate());
-            problems += compareSalesPerson(orderResults, salesPerson);
+            problems += compareSalesPerson(orderResults, commRow.getSalesPerson());
             problems += compareSales(transResults, commRow.getSale());
             problems += compareGP(transResults, commRow.getGp());
             problems += compareSaleType(orderResults, commRow.getSaleType());
-            problems += compareSalesPerson(orderResults, commRow.getSalesPerson());
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -77,22 +76,22 @@ public class CommQueries {
         }
     }
 
-    private String compareSalesPerson(ResultSet rs, String commSalesPerson) throws SQLException {
+    private String compareSalesPerson(ResultSet rs, int commSalesPerson) throws SQLException {
         //System.out.println("---Compare Sales Person---");
-        String salesPerson = null;
-        String temp;
+        int salesPerson = 1;
+        int temp;
         Dictionaries dict = new Dictionaries();
 
         rs.beforeFirst();
 
         if(rs.next()) {
-            temp = dict.getSalesPerson(rs.getInt(rs.findColumn("sales_person")));
-            //System.out.println("Sales Person: " + temp);
+            temp = rs.getInt(rs.findColumn("sales_person"));
+            //System.out.println("Sales Person: " + dict.getSalesPerson(temp));
             salesPerson = temp;
         }
 
-        if(commSalesPerson.compareTo(salesPerson) != 0) {
-            return " | Sales Person: " + salesPerson;
+        if(commSalesPerson != salesPerson) {
+            return " | Sales Person: " + dict.getSalesPerson(salesPerson);
         } else {
             return "";
         }
@@ -174,25 +173,6 @@ public class CommQueries {
 
         if(commSaleType != saleType) {
             return " | Sale Type: " + dict.getSalesType(saleType);
-        } else {
-            return "";
-        }
-    }
-    private String compareSalesPerson(ResultSet rs, int commSalesPerson) throws SQLException {
-        //System.out.println("---Compare Sales Person---");
-        int salesPerson = 0;
-        int temp;
-
-        rs.beforeFirst();
-
-        if(rs.next()) {
-            temp = rs.getInt(rs.findColumn("sales_person"));
-            //System.out.println("Sales Person: " + temp);
-            salesPerson = temp;
-        }
-
-        if(commSalesPerson != salesPerson) {
-            return " | Sales Person: " + salesPerson;
         } else {
             return "";
         }

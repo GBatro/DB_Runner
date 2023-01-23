@@ -7,8 +7,6 @@
     <list default="true" id="d856cdd3-d819-4a7c-acdd-5b00abd91444" name="Changes" comment="General Idea">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/CommQueries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CommQueries.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DB_Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DB_Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dictionaries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dictionaries.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
